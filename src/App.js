@@ -1,13 +1,15 @@
 import PrimarySearchAppBar from "./components/AppBar";
-import MainSection from "./components/MainSection";
+import MainSection from "./components/sections/MainSection";
+import CarouselSection from "./components/carouselSection/carouselSection";
 
 function App() {
-  return (
-    <div>
-      <PrimarySearchAppBar/>
-      <MainSection/>
-    </div>
-  );
+    return (
+        <div>
+            <PrimarySearchAppBar/>
+            <CarouselSection/>
+            <MainSection/>
+        </div>
+    );
 }
 
 export default App;

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function BasicCard() {
@@ -18,20 +16,23 @@ export default function BasicCard() {
     return (
         <>
             {data.map(item => (
-                <Card sx={{ maxWidth: 150, minWidth: 150, margin: 1 }}>
+                <Card sx={{maxWidth: 150, minWidth: 150, margin: 1}} variant="null" key={item.id}>
                     <CardMedia
-                        sx={{ maxHeight: 200, height: 999 }} // check later
+                        sx={{
+                            maxHeight: 200,
+                            height: 999,
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '4px'
+                        }} // check later
                         image="https://th.bing.com/th/id/OIP.OcnLjfzboIj5HXnUmbVD1QHaGO?pid=ImgDet&rs=1"
                         title="green iguana"
+                        variant="outlined"
                     />
-                    <CardContent sx={{ padding: 0, marginLeft: 2, height: 25 }}>
-                        <Typography gutterBottom variant="h5" component="div" >
-                            {item.name}
+                    <CardContent sx={{padding: 0, marginLeft: 2, flexGrow: 1}}>
+                        <Typography gutterBottom variant="h7" component="div">
+                            <a href="">{item.name}</a>
                         </Typography>
                     </CardContent>
-                    <CardActions sx={{ height: 10 }}>
-                        <Button size="small">Read Now</Button>
-                    </CardActions>
                 </Card>
             ))}
         </>

@@ -8,10 +8,10 @@ export default function BasicCard() {
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:8080/')
+        fetch('http://localhost:8080/book/')
             .then(response => response.json())
             .then(data => setData(data.result));
-    }, []);
+    }, []); // need dependency
 
     return (
         <>

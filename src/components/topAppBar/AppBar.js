@@ -14,7 +14,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Button from '@mui/material/Button';
+import AuthModal from "./loginButton/AuthModal";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -180,20 +180,7 @@ export default function PrimarySearchAppBar() {
 
                     {!auth && (
                         <>
-                            <Box sx={{ flexGrow: 1 }} />
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    bgcolor: 'blue',
-                                    color: 'white',
-                                    '&:hover': {
-                                        bgcolor: 'gray',
-                                        color: 'white',
-                                    },
-                                }}
-                            >
-                                Login/Register
-                            </Button>
+                            <AuthModal/>
                         </>
                     )}
 

@@ -45,11 +45,8 @@ export default function LoginForm() {
                     'Content-Type': 'application/json',
                 },
             });
-
-            // Handle the response data here
             console.log(response.data);
         } catch (error) {
-            // Handle error here
             console.error(error);
         }
     };

@@ -38,12 +38,12 @@ export default function SignupForm() {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/account/login', data, {
+            const response = await axios.post('http://localhost:8080/account/signup', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-
+            console.log(data)
             console.log(response.data);
         } catch (error) {
             console.error(error);

@@ -3,15 +3,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 function Copyright(props) {
     return (
@@ -31,14 +29,27 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignupForm() {
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const data = {
+            email: event.target.email.value,
+            password: event.target.password.value,
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/account/login', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
+
 
     return (
         <ThemeProvider theme={defaultTheme}>

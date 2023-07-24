@@ -30,6 +30,7 @@ export default function BasicCard() {
                     />
                     <CardContent sx={{padding: 0, marginLeft: 2, flexGrow: 1}}>
                         <Typography gutterBottom variant="h7" component="div">
+                            {/*click to this to open book*/}
                             <a href="">{item.name}</a>
                         </Typography>
                     </CardContent>

@@ -56,8 +56,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
-    const [auth, setAuth] = React.useState(false); //check authed or not, display if true, if false: display login button
+export default function PrimarySearchAppBar(props) {
+    const { session } = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -81,6 +81,11 @@ export default function PrimarySearchAppBar() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+    const handleLogout = () => {
+        handleMenuClose();
+        window.location.href = 'http://localhost:8080/account/logout';
+        window.location.href = 'http://localhost:3000/';
+    };
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -101,6 +106,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleLogout}>Log out</MenuItem>
         </Menu>
     );
 
@@ -119,11 +125,11 @@ export default function PrimarySearchAppBar() {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
+            onClose={handleMobileMenuClose} //badgeContent={4}
+        > 
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit"> 
+                    <Badge color="error">
                         <MailIcon />
                     </Badge>
                 </IconButton>
@@ -178,27 +184,27 @@ export default function PrimarySearchAppBar() {
                         />
                     </Search>
 
-                    {!auth && (
+                    {!session && (
                         <>
                             <AuthModal/>
                         </>
                     )}
 
-                    {auth && (
+                    {session && (
                         <>
                             <Box sx={{ flexGrow: 1 }} />
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                    <Badge badgeContent={4} color="error">
+                                    <Badge color="error">
                                         <MailIcon />
                                     </Badge>
                                 </IconButton>
                                 <IconButton
                                     size="large"
-                                    aria-label="show 17 new notifications"
+                                    // aria-label="show 17 new notifications" // badgeContent={17}
                                     color="inherit"
                                 >
-                                    <Badge badgeContent={17} color="error">
+                                    <Badge color="error"> 
                                         <NotificationsIcon />
                                     </Badge>
                                 </IconButton>

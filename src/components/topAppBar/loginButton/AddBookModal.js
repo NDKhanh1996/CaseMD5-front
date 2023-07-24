@@ -41,6 +41,7 @@ export default function AddBookModal() {
         initialValues: {
             name: "",
             categories: "",
+            author:""
         },
         onSubmit: values => {
 
@@ -59,8 +60,9 @@ export default function AddBookModal() {
                     getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                         let data = {
                             name: values.name,
-                            category: values.category,
-                            avatar: url
+                            categories: values.category,
+                            author: values.author,
+                            cover: url
                         }
                         Comicservice.addComic(data).then()
                     });
@@ -111,7 +113,7 @@ export default function AddBookModal() {
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Category</label>
+                            <label for="exampleInputPassword1" class="form-label">Categories</label>
                             <input type="text"
                                 class="form-control"
                                 id="exampleInputPassword1"
@@ -121,8 +123,21 @@ export default function AddBookModal() {
                                 value={formAddComic.values.categories}
                             />
                         </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">author</label>
+                            <input type="text"
+                                class="form-control"
+                                id="exampleInputPassword1"
+                                name="author"
+                                style={{ width: "500px" }}
+                                onChange={formAddComic.handleChange}
+                                value={formAddComic.values.author}
+                            />
+                        </div>
+
                         <div>
-                            <input type="file" name="avatar" onChange={choseFile} required />
+                            <input type="file" name="cover" onChange={choseFile} required />
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <p>{percent} % done</p>

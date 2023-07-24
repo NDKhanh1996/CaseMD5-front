@@ -46,7 +46,7 @@ export default function LoginForm() {
                 },
             });
             console.log(response.data);
-            // window.location.href = 'http://localhost:3000/';
+            window.location.href = 'http://localhost:3000/';
         } catch (error) {
             console.error(error);
         }

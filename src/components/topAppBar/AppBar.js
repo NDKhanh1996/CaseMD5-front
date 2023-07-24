@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import {styled, alpha} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,7 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import AuthModal from "./loginButton/AuthModal";
 import AddBookModal from "./loginButton/AddBookModal";
 
-const Search = styled('div')(({ theme }) => ({
+const Search = styled('div')(({theme}) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -33,7 +33,7 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({theme}) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -43,7 +43,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({theme}) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
-    const { session } = props;
+    const {session} = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -85,7 +85,6 @@ export default function PrimarySearchAppBar(props) {
     const handleLogout = () => {
         handleMenuClose();
         window.location.href = 'http://localhost:8080/account/logout';
-        window.location.href = 'http://localhost:3000/';
     };
 
     const menuId = 'primary-search-account-menu';
@@ -107,7 +106,7 @@ export default function PrimarySearchAppBar(props) {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            {session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && <AddBookModal />}
+            {session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && <AddBookModal/>}
             <MenuItem onClick={handleLogout}>Log out</MenuItem>
         </Menu>
     );
@@ -128,11 +127,11 @@ export default function PrimarySearchAppBar(props) {
             }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose} //badgeContent={4}
-        > 
+        >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit"> 
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge color="error">
-                        <MailIcon />
+                        <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -144,7 +143,7 @@ export default function PrimarySearchAppBar(props) {
                     color="inherit"
                 >
                     <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
+                        <NotificationsIcon/>
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
@@ -157,7 +156,7 @@ export default function PrimarySearchAppBar(props) {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+                    <AccountCircle/>
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -165,24 +164,24 @@ export default function PrimarySearchAppBar(props) {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{flexGrow: 1}}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{display: {xs: 'none', sm: 'block'}}}
                     >
                         DOC-HAITEN
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{'aria-label': 'search'}}
                         />
                     </Search>
 
@@ -194,11 +193,11 @@ export default function PrimarySearchAppBar(props) {
 
                     {session && (
                         <>
-                            <Box sx={{ flexGrow: 1 }} />
-                            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <Box sx={{flexGrow: 1}}/>
+                            <Box sx={{display: {xs: 'none', md: 'flex'}}}>
                                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                                     <Badge color="error">
-                                        <MailIcon />
+                                        <MailIcon/>
                                     </Badge>
                                 </IconButton>
                                 <IconButton
@@ -206,8 +205,8 @@ export default function PrimarySearchAppBar(props) {
                                     // aria-label="show 17 new notifications" // badgeContent={17}
                                     color="inherit"
                                 >
-                                    <Badge color="error"> 
-                                        <NotificationsIcon />
+                                    <Badge color="error">
+                                        <NotificationsIcon/>
                                     </Badge>
                                 </IconButton>
                                 <IconButton
@@ -219,10 +218,10 @@ export default function PrimarySearchAppBar(props) {
                                     onClick={handleProfileMenuOpen}
                                     color="inherit"
                                 >
-                                    <AccountCircle />
+                                    <AccountCircle/>
                                 </IconButton>
                             </Box>
-                            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                            <Box sx={{display: {xs: 'flex', md: 'none'}}}>
                                 <IconButton
                                     size="large"
                                     aria-label="show more"
@@ -231,7 +230,7 @@ export default function PrimarySearchAppBar(props) {
                                     onClick={handleMobileMenuOpen}
                                     color="inherit"
                                 >
-                                    <MoreIcon />
+                                    <MoreIcon/>
                                 </IconButton>
                             </Box>
                         </>

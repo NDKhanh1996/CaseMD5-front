@@ -3,7 +3,7 @@ import BoxSx from "./miniComponents/comments";
 
 const RightSection = ({children, style}) => {
     const defaultStyles = {
-        width: '25%',
+        width: '30%',
         margin: '0 auto',
         display: 'flex',
         marginTop: "10px",
@@ -16,10 +16,10 @@ const RightSection = ({children, style}) => {
     return <section style={{...defaultStyles, ...style}}>{children}</section>;
 };
 
-export default function RightSideSection() {
+export default function RightSideSection(props) {
     return (
         <RightSection>
-            <BoxSx/>
+            <BoxSx session={props.session}/>
         </RightSection>
     );
 }

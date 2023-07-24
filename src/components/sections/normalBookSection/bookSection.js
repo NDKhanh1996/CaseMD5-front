@@ -3,7 +3,7 @@ import BookCard from "../../BookCard";
 
 const LeftSection = ({children, style}) => {
     const defaultStyles = {
-        width: '75%',
+        width: '70%',
         margin: '0 auto',
         display: 'flex',
         marginTop: "10px",

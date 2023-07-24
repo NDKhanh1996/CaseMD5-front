@@ -20,8 +20,8 @@ const CenteredSection = ({children, style}) => {
 export default function MainSection(props) {
     return (
         <CenteredSection>
-            <BookSection session={props}/>
-            <RightSideSection session={props}/>
+            <BookSection session={props.session}/>
+            <RightSideSection session={props.session} />
         </CenteredSection>
     );
 }

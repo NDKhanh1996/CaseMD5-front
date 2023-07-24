@@ -7,9 +7,14 @@ import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import axios from "axios";
 import EditBookModal from "./EditBookModal";
+import {useEffect, useState} from "react";
 
 export default function BasicCard(props) {
-    const {session} = props.session.session;
+    const [session, setSession] = useState(props.session.session);
+    useEffect(() => {
+        setSession(props.session.session);
+    }, [props.session.session]);
+
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
@@ -17,19 +22,6 @@ export default function BasicCard(props) {
             .then(response => response.json())
             .then(data => setData(data.result));
     }, []); // need dependency
-
-
-    const handleEditClick = (event, id) => {
-        event.preventDefault();
-        axios.put(`http://localhost:8080/book/update/${id}`, /* body data nếu cần */)
-            .then(response => {
-                console.log(response.data);
-                window.location.href = 'http://localhost:3000/';
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    };
 
     const handleDeleteClick = (event, id) => {
         event.preventDefault();
@@ -49,9 +41,8 @@ export default function BasicCard(props) {
                 <Card sx={{maxWidth: 150, minWidth: 150, margin: 1}} variant="null" key={item.id}>
                     <Box sx={{ '& button': { m: 1, fontSize: '10px', width: '55px', minWidth: "5px" }, marginLeft: '5px' }}>
                         <div>
-                            {session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && (
+                            {session && session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && (
                                 <>
-                                    {/*<Button variant="contained" size="small" onClick={(event) => handleEditClick(event, item.id)}>Edit</Button>*/}
                                     <EditBookModal bookItem={item}/>
                                     <Button variant="contained" size="small" onClick={(event) => handleDeleteClick(event, item.id)}>Delete</Button>
                                 </>

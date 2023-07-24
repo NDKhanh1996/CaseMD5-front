@@ -7,6 +7,9 @@ class Bookservice {
     static async addComic(data) {
         return await axios.post('http://localhost:8080/book/add', data)
     }
+    static async editComic(id, data){
+        return await axios.put(`http://localhost:8080/book/update/${id}`, data)
+    }
 }
 
 export default Bookservice

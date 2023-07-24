@@ -30,10 +30,10 @@ const LeftSection = ({children, style}) => {
     );
 };
 
-export default function BookSection() {
+export default function BookSection(props) {
     return (
         <LeftSection>
-            <BookCard/>
+            <BookCard session={props} />
         </LeftSection>
     );
 }

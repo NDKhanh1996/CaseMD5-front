@@ -3,8 +3,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import axios from "axios";
+import EditBookModal from "./EditBookModal";
 
-export default function BasicCard() {
+export default function BasicCard(props) {
+    const {session} = props.session.session;
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
@@ -13,10 +18,46 @@ export default function BasicCard() {
             .then(data => setData(data.result));
     }, []); // need dependency
 
+
+    const handleEditClick = (event, id) => {
+        event.preventDefault();
+        axios.put(`http://localhost:8080/book/update/${id}`, /* body data nếu cần */)
+            .then(response => {
+                console.log(response.data);
+                window.location.href = 'http://localhost:3000/';
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
+    const handleDeleteClick = (event, id) => {
+        event.preventDefault();
+        axios.delete(`http://localhost:8080/book/delete/${id}`)
+            .then(response => {
+                console.log(response.data);
+                window.location.href = 'http://localhost:3000/';
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     return (
         <>
             {data.map(item => (
                 <Card sx={{maxWidth: 150, minWidth: 150, margin: 1}} variant="null" key={item.id}>
+                    <Box sx={{ '& button': { m: 1, fontSize: '10px', width: '55px', minWidth: "5px" }, marginLeft: '5px' }}>
+                        <div>
+                            {session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && (
+                                <>
+                                    {/*<Button variant="contained" size="small" onClick={(event) => handleEditClick(event, item.id)}>Edit</Button>*/}
+                                    <EditBookModal bookItem={item}/>
+                                    <Button variant="contained" size="small" onClick={(event) => handleDeleteClick(event, item.id)}>Delete</Button>
+                                </>
+                            )}
+                        </div>
+                    </Box>
                     <CardMedia
                         sx={{
                             maxHeight: 200,
@@ -24,8 +65,7 @@ export default function BasicCard() {
                             border: '1px solid #e0e0e0',
                             borderRadius: '4px'
                         }} // check later
-                        image="https://firebasestorage.googleapis.com/v0/b/md5front-3316d.appspot.com/o/images%2FCa%CC%80-phe%CC%82-%C4%91en-Sa%CC%80i-Go%CC%80n-1.jpeg?alt=media&token=c8439625-aaf0-4ba7-a8ce-52e82fdcea95"
-                        title="green iguana"
+                        image={item.cover}
                         variant="outlined"
                     />
                     <CardContent sx={{padding: 0, marginLeft: 2, flexGrow: 1}}>

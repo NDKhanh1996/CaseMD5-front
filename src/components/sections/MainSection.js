@@ -17,11 +17,11 @@ const CenteredSection = ({children, style}) => {
     return <section style={{...defaultStyles, ...style}}>{children}</section>;
 };
 
-export default function MainSection() {
+export default function MainSection(props) {
     return (
         <CenteredSection>
-            <BookSection/>
-            <RightSideSection/>
+            <BookSection session={props}/>
+            <RightSideSection session={props}/>
         </CenteredSection>
     );
 }

@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useState } from "react";
-import storage from "../../../config/fireBase";
+import storage from "../config/fireBase";
 import { useFormik } from "formik";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import Comicservice from "../../../service/bookService";
+import Comicservice from "../service/bookService";
 
 const style = {
     position: 'absolute',
@@ -24,7 +24,7 @@ const style = {
     justifyContent: 'center',
 };
 
-export default function AddBookModal() {
+export default function EditBookModal({ bookItem }) {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,11 +37,11 @@ export default function AddBookModal() {
         setFile(file)
     }
 
-    const formAddComic = useFormik({
+    const formEditComic = useFormik({
         initialValues: {
-            name: "",
-            categories: "",
-            author:""
+            name: bookItem?.name || "",
+            categories: bookItem?.categories || "",
+            author: bookItem?.author || "",
         },
         onSubmit: values => {
 
@@ -64,7 +64,7 @@ export default function AddBookModal() {
                             author: values.author,
                             cover: url
                         }
-                        Comicservice.addComic(data).then()
+                        Comicservice.editComic(bookItem.id, data).then()
                     });
                 }
             );
@@ -88,7 +88,7 @@ export default function AddBookModal() {
                     },
                 }}
             >
-                Add Book
+                EDIT
             </Button>
             <Modal
                 open={open}
@@ -97,42 +97,42 @@ export default function AddBookModal() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <h1>Add Comic</h1>
-                    <form encType="multipart/form-data" onSubmit={formAddComic.handleSubmit}>
+                    <h1>Edit Comic</h1>
+                    <form encType="multipart/form-data" onSubmit={formEditComic.handleSubmit}>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name</label>
                             <input type="text"
-                                class="form-control"
-                                id="exampleInputEmail1"
-                                name="name"
-                                aria-describedby="emailHelp"
-                                style={{ width: "500px" }}
-                                onChange={formAddComic.handleChange}
-                                value={formAddComic.values.name}
+                                   class="form-control"
+                                   id="exampleInputEmail1"
+                                   name="name"
+                                   aria-describedby="emailHelp"
+                                   style={{ width: "500px" }}
+                                   onChange={formEditComic.handleChange}
+                                   value={formEditComic.values.name}
                             />
                             <div id="emailHelp" class="form-text"></div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Categories</label>
                             <input type="text"
-                                class="form-control"
-                                id="exampleInputPassword1"
-                                name="categories"
-                                style={{ width: "500px" }}
-                                onChange={formAddComic.handleChange}
-                                value={formAddComic.values.categories}
+                                   class="form-control"
+                                   id="exampleInputPassword1"
+                                   name="categories"
+                                   style={{ width: "500px" }}
+                                   onChange={formEditComic.handleChange}
+                                   value={formEditComic.values.categories}
                             />
                         </div>
 
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">author</label>
                             <input type="text"
-                                class="form-control"
-                                id="exampleInputPassword1"
-                                name="author"
-                                style={{ width: "500px" }}
-                                onChange={formAddComic.handleChange}
-                                value={formAddComic.values.author}
+                                   class="form-control"
+                                   id="exampleInputPassword1"
+                                   name="author"
+                                   style={{ width: "500px" }}
+                                   onChange={formEditComic.handleChange}
+                                   value={formEditComic.values.author}
                             />
                         </div>
 

@@ -15,6 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AuthModal from "./loginButton/AuthModal";
+import AddBookModal from "./loginButton/AddBookModal";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -106,6 +107,7 @@ export default function PrimarySearchAppBar(props) {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <AddBookModal/>
             <MenuItem onClick={handleLogout}>Log out</MenuItem>
         </Menu>
     );

@@ -61,7 +61,6 @@ export default function AuthModal() {
                         {showModalOne ? 'Switch to Signup' : 'Switch to Signin'}
                     </Button>
                     {showModalOne ? <LoginForm/> : <SignupForm/>}
-                    {/* Add the switch button inside the modal */}
                 </Box>
             </Modal>
         </>

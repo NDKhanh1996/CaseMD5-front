@@ -16,7 +16,7 @@ const LeftSection = ({children, style}) => {
     return (
         <section style={{...defaultStyles, ...style}}>
             <div style={{display: 'flex', flexDirection: 'column'}}>
-                <h1 style={{paddingLeft: 10, color: "#2980b9"}}>Danh sách truyện ></h1>
+                <h1 style={{paddingLeft: 10, color: "#2980b9"}}>Danh sách truyện </h1>
                 <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',

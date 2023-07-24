@@ -23,7 +23,10 @@ function App() {
   }, []);
 
   console.log("session here");
-  console.log(session);
+  if (session.accountInfo && session.accountInfo.role) {
+    console.log(session.accountInfo.role);
+  }
+
   return (
     <div>
       <PrimarySearchAppBar session={session} />

@@ -107,7 +107,7 @@ export default function PrimarySearchAppBar(props) {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <AddBookModal/>
+            {session.accountInfo && session.accountInfo.role === "ROLE_ADMIN" && <AddBookModal />}
             <MenuItem onClick={handleLogout}>Log out</MenuItem>
         </Menu>
     );
